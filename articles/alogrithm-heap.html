@@ -110,12 +110,12 @@
 <p><strong><em>实现</em></strong></p>
 <p>（1）从最后一个非叶节点开始操作。
 例如现在给定一个数组，heap []= {16,7,3,20,17,8},构造如下的完全二叉树
-<img alt="image" src="C:\Users\smith\Desktop\有道笔记\heap0.jpeg"></p>
+<img alt="image" src="../image/heap0.jpeg"></p>
 <p>然后按照以下步骤开始初始化最大堆</p>
-<p><img alt="image" src="C:\Users\smith\Desktop\有道笔记\heap1.jpeg">
-<img alt="image" src="C:\Users\smith\Desktop\有道笔记\heap2.jpeg">
-<img alt="image" src="C:\Users\smith\Desktop\有道笔记\heap3.jpeg">
-<img alt="image" src="C:\Users\smith\Desktop\有道笔记\heap4.jpeg"></p>
+<p><img alt="image" src="../image/heap1.jpeg">
+<img alt="image" src="../image/heap2.jpeg">
+<img alt="image" src="../image/heap3.jpeg">
+<img alt="image" src="../image/heap4.jpeg"></p>
 <p>通过以上四步的调整，当前完全二叉树已经被调整为最大堆。实际代码从第<code>n/2</code>个节点开始调整最大堆，如下：</p>
 <div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">adjust</span><span class="o">(</span><span class="kt">int</span> <span class="n">heap</span><span class="o">[]){</span>
     <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">heap</span><span class="o">.</span><span class="na">length</span><span class="o">/</span><span class="mi">2</span><span class="o">;</span><span class="n">i</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">--){</span>

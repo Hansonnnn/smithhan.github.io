@@ -88,7 +88,25 @@
     </p>
   </header>
   <div>
-      
+      <h3>一、 java中byte[]在获取对应的String字符串时出现乱码问题</h3>
+<p><strong> 在java中对string进行编码，解码的过程如下：</strong></p>
+<p>原理解析：</p>
+<ul>
+<li>对于在java中的String来说，String即可看作char[]，在Java中char[]通过<code>charsetIn</code>字符集映射为<code>byte[]</code>，然后<code>byte[]</code>再按照<code>charsetOut</code>映射为<code>char[]</code>.</li>
+</ul>
+<p>charset字符集，对应编码方式，可以理解为一张映射表，可以将char映射为byte,也可以将byte映射为char.</p>
+<h3>二、关于Java中编码方式需要注意的几点？</h3>
+<p>java中对于编码的要求，方式，字符集，是对于byte[]而言，再通俗点说就是翻译到机器级别的二进制字节代码而言的。</p>
+<p>我们所说的编码方式再char[]上是统一的，即再String上为统一的。</p>
+<h3>三、Java中关于File的编码和解码</h3>
+<p>Java中关于File的编码和解码的原理和String编码解码有点相似。见下图：</p>
+<p><img alt="image" src="../images/file_code.jpeg"></p>
+<p>Java中关于文件读写，有Stream流方式和Writer字符方式，可以在这两个已有的概念之上再进一步深化考虑归纳。</p>
+<p>根据以上图，可以将Java文件读写再分为两种：</p>
+<ul>
+<li>按照Byte读取</li>
+</ul>
+<p>不难理解，这就是常说的stream流的形式，我觉得再实际当中按这种方式事最省事，最方便的，根据上图也可以知道 …</p>
       <br>
       <a class="btn" href="https://smithhan.github.io/articles/java-string.html#java-string">    Continue reading
 </a>

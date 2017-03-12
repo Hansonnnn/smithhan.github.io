@@ -94,6 +94,7 @@
   <div>
     <h3>一、 java中byte[]在获取对应的String字符串时出现乱码问题</h3>
 <p><strong> 在java中对string进行编码，解码的过程如下：</strong></p>
+<p><img alt="image" src="../images/String_code.jpeg"></p>
 <p>原理解析：</p>
 <ul>
 <li>对于在java中的String来说，String即可看作char[]，在Java中char[]通过<code>charsetIn</code>字符集映射为<code>byte[]</code>，然后<code>byte[]</code>再按照<code>charsetOut</code>映射为<code>char[]</code>.</li>

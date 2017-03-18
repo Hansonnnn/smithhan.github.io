@@ -79,6 +79,33 @@
 
 <article>
   <header>
+    <h2><a href="https://smithhan.github.io/articles/network-socket.html#network-socket">计算机网络之Socket</a></h2>
+    <p>
+          Posted on 2017-03-18(Saturday) 22:38 in <a href="https://smithhan.github.io/category/network.html">network</a>
+
+
+
+    </p>
+  </header>
+  <div>
+      <h1>Socket</h1>
+<p>在了解Socket之前需要了解计算机网络中的传输层协议<code>TCP</code> 与 <code>UDP</code>。</p>
+<h2>UDP协议</h2>
+<p><code>UDP</code>属于传输层协议，提供不可靠传输服务，协议结构比起同事传输层的协议<code>TCP</code>要更小，在传输数据时无需事先建立连接，延时低，花费时间较短。</p>
+<h2>TCP协议</h2>
+<p>提供可靠的交付服务，协议结构较长，在传输数据前需要事先建立连接，并且建立的连接属于虚链接，每一条TCP连接只能有两个<code>end point</code>，只能是点对点的，并且提供全双工通信。在应用程序按数据块交付给传输层后，TCP协议不会按照其数据块传输，而是将其看成是一整段字节流处理。关于每次传输的数据长度会根据<code>TCP</code>的拥塞机制主动调节。</p>
+<p>以下会以TCP为重点来引出本文主要内容<code>Socket</code>,TCP连接需要有两个<code>end point</code>，在<code>TCP</code>协议看来，这两个<code>endpoint</code>不是主机IP也不是端口号，而是套接字，套接字是由IP地址和端口号组成，一条TCP连接由通信两端的<code>end point</code>唯一确定。</p>
+<h2>Socket概述</h2>
+<blockquote>
+<p>引用自github …</p></blockquote>
+      <br>
+      <a class="btn" href="https://smithhan.github.io/articles/network-socket.html#network-socket">    Continue reading
+</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://smithhan.github.io/articles/linux-ext.html#linux-ext">Linux文件系统</a></h2>
     <p>
           Posted on 2017-03-12(Sunday) 22:30 in <a href="https://smithhan.github.io/category/linux.html">Linux</a>

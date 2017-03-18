@@ -32,11 +32,11 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <meta name="author" content="Han Zhao" />
-<meta name="description" content="Socket 在了解Socket之前需要了解计算机网络中的传输层协议TCP 与 UDP。 UDP协议 UDP属于传输层协议，提供不可靠传输服务，协议结构比起同事传输层的协议TCP要更小，在传输数据时无需事先建立连接，延时低，花费时间较短。 TCP协议 提供可靠的交付服务，协议结构较长，在传输数据前需要事先建立连接，并且建立的连接属于虚链接，每一条TCP连接只能有两个end point，只能是点对点的，并且提供全双工通信。在应用程序按数据块交付给传输层后，TCP协议不会按照其数据块传输，而是将其看成是一整段字节流处理。关于每次传输的数据长度会根据TCP的拥塞机制主动调节。 以下会以TCP为重点来引出本文主要内容Socket,TCP连接需要有两个end point，在TCP协议看来，这两个endpoint不是主机IP也不是端口号，而是套接字，套接字是由IP地址和端口号组成，一条TCP连接由通信两端的end point唯一确定。 Socket概述 引用自github …" />
+<meta name="description" content="Socket 在了解Socket之前需要了解计算机网络中的传输层协议TCP 与 UDP。 UDP协议 UDP属于传输层协议，提供不可靠传输服务，协议结构比起同事传输层的协议TCP要更小，在传输数据时无需事先建立连接，延时低，花费时间较短。 TCP协议 提供可靠的交付服务，协议结构较长，在传输数据前需要事先建立连接，并且建立的连接属于虚链接，每一条TCP连接只能有两个end point，只能是点对点的，并且提供全双工通信。在应用程序按数据块交付给传输层后，TCP协议不会按照其数据块传输，而是将其看成是一整段字节流处理。关于每次传输的数据长度会根据TCP的拥塞机制主动调节。 以下会以TCP为重点来引出本文主要内容Socket,TCP连接需要有两个end point，在TCP协议看来，这两个endpoint不是主机IP也不是端口号，而是套接字，套接字是由IP地址和端口号组成，一条TCP连接由通信两端的end point唯一确定。 Socket概述 Socket起源于Unix …" />
 <meta name="keywords" content="">
 <meta property="og:site_name" content="Smith"/>
 <meta property="og:title" content="计算机网络之Socket"/>
-<meta property="og:description" content="Socket 在了解Socket之前需要了解计算机网络中的传输层协议TCP 与 UDP。 UDP协议 UDP属于传输层协议，提供不可靠传输服务，协议结构比起同事传输层的协议TCP要更小，在传输数据时无需事先建立连接，延时低，花费时间较短。 TCP协议 提供可靠的交付服务，协议结构较长，在传输数据前需要事先建立连接，并且建立的连接属于虚链接，每一条TCP连接只能有两个end point，只能是点对点的，并且提供全双工通信。在应用程序按数据块交付给传输层后，TCP协议不会按照其数据块传输，而是将其看成是一整段字节流处理。关于每次传输的数据长度会根据TCP的拥塞机制主动调节。 以下会以TCP为重点来引出本文主要内容Socket,TCP连接需要有两个end point，在TCP协议看来，这两个endpoint不是主机IP也不是端口号，而是套接字，套接字是由IP地址和端口号组成，一条TCP连接由通信两端的end point唯一确定。 Socket概述 引用自github …"/>
+<meta property="og:description" content="Socket 在了解Socket之前需要了解计算机网络中的传输层协议TCP 与 UDP。 UDP协议 UDP属于传输层协议，提供不可靠传输服务，协议结构比起同事传输层的协议TCP要更小，在传输数据时无需事先建立连接，延时低，花费时间较短。 TCP协议 提供可靠的交付服务，协议结构较长，在传输数据前需要事先建立连接，并且建立的连接属于虚链接，每一条TCP连接只能有两个end point，只能是点对点的，并且提供全双工通信。在应用程序按数据块交付给传输层后，TCP协议不会按照其数据块传输，而是将其看成是一整段字节流处理。关于每次传输的数据长度会根据TCP的拥塞机制主动调节。 以下会以TCP为重点来引出本文主要内容Socket,TCP连接需要有两个end point，在TCP协议看来，这两个endpoint不是主机IP也不是端口号，而是套接字，套接字是由IP地址和端口号组成，一条TCP连接由通信两端的end point唯一确定。 Socket概述 Socket起源于Unix …"/>
 <meta property="og:locale" content="zh_CN"/>
 <meta property="og:url" content="https://smithhan.github.io/articles/network-socket.html"/>
 <meta property="og:type" content="article"/>
@@ -101,12 +101,11 @@
 <p>以下会以TCP为重点来引出本文主要内容<code>Socket</code>,TCP连接需要有两个<code>end point</code>，在<code>TCP</code>协议看来，这两个<code>endpoint</code>不是主机IP也不是端口号，而是套接字，套接字是由IP地址和端口号组成，一条TCP连接由通信两端的<code>end point</code>唯一确定。</p>
 <h2>Socket概述</h2>
 <blockquote>
-<p>引用自github；Socket起源于Unix，而Unix基本哲学之一就是“一切皆文件”，都可以用“打开open –&gt; 读写write/read –&gt; 关闭close”模式来操作。Socket就是该模式的一个实现，网络的Socket数据传输是一种特殊的I/O，Socket也是一种文件描述符。 Socket也具有一个类似于打开文件的函数调用：Socket()，该函数返回一个整型的Socket描述符，随后的连接建立、数据传输等操作都是通过 该Socket实现的。
+<p>Socket起源于Unix，而Unix基本哲学之一就是“一切皆文件”，都可以用“打开open –&gt; 读写write/read –&gt; 关闭close”模式来操作。Socket就是该模式的一个实现，网络的Socket数据传输是一种特殊的I/O，Socket也是一种文件描述符。 Socket也具有一个类似于打开文件的函数调用：Socket()，该函数返回一个整型的Socket描述符，随后的连接建立、数据传输等操作都是通过 该Socket实现的。
 常用的Socket类型有两种：流式Socket（SOCK_STREAM）和数据报式Socket（SOCK_DGRAM）。流式是一种面向连接 的Socket，针对于面向连接的TCP服务应用；数据报式Socket是一种无连接的Socket，对应于无连接的UDP服务应用。</p>
 </blockquote>
-<p>来源： https://github.com/astaxie/build-web-application-with-golang/blob/master/zh/08.1.md</p>
 <p>以上在TCP协议所描述到的套接字就是流式Socket（TCP Socket）。下图是计算机网络的七层协议结构。</p>
-<p><img alt="image" src="/home/smith/blog/content/images/network-seven.png"></p>
+<p><img alt="image" src="../images/network-seven.png"></p>
 <p>通过此图可以看到Socket在七层结构中位于传输层和应用层之间。接下来说明Socket通信。</p>
 <h2>Socket通信</h2>
 <p>在网络系统中，同样是需要与操作系统一样在每一个网络中标识应用进程，这也是进行网络通信的前提，操作系统中提供了<code>PID</code>标示系统中的进程，同样在网络系统中提供了<code>Ip</code>，一个IP可以唯一锁定一台主机，而传输层的“协议+端口”可以唯一标识主机中的应用程序（进程）。这样利用三元组（ip地址，协议，端口）就可以标识网络的进程了，网络中需要互相通信的进程，就可以利用这个标志在他们之间进行交互。</p>
@@ -215,6 +214,12 @@
 
 <span class="p">}</span>
 </pre></div>
+
+
+<p>测试结果</p>
+<p><img alt="image" src="../images/socket-result.jpg"></p>
+<h4>参考文档</h4>
+<p>https://github.com/astaxie/build-web-application-with-golang/blob/master/zh/08.1.md</p>
   </div>
   <div class="tag-cloud">
     <p>
